@@ -13,6 +13,13 @@ module.exports = {
         name: "pages",
       },
     },
+    {
+      resolve: "gatsby-source-prismic",
+      options: {
+        repositoryName: "harrisgeo",
+        accessToken: process.env.API_KEY,
+      },
+    },
     "gatsby-transformer-remark",
     {
       resolve: `gatsby-plugin-google-analytics`,
