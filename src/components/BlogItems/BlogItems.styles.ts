@@ -6,7 +6,7 @@ interface DarkProps {
 }
 
 export const BlockWrapper = styled.div`
-  padding: ${tokens.spacingS};
+  padding: ${tokens.spacingXs};
 `
 
 export const Block = styled.button<DarkProps>`
@@ -14,9 +14,9 @@ export const Block = styled.button<DarkProps>`
   width: calc(100% - 20px);
   padding: 0;
   text-align: left;
-  font-family: "Montserrat", sans-serif;
-  background-color: ${props => (props.dark ? tokens.dark : tokens.light)};
-  color: ${props => (props.dark ? tokens.light : tokens.dark)};
+  font-family: ${tokens.font};
+  background-color: ${(props) => (props.dark ? tokens.dark : tokens.white)};
+  color: ${(props) => (props.dark ? tokens.light : tokens.dark)};
   border: 0;
   cursor: pointer;
 
@@ -45,6 +45,7 @@ export const MiniWrapper = styled.div`
 export const Title = styled.div`
   text-decoration: none;
   font-size: 24px;
+  font-weight: 400;
 
   &:hover {
     color: ${tokens.hover};
@@ -57,6 +58,8 @@ export const Title = styled.div`
 
 export const Description = styled.div`
   font-size: 20px;
+  font-weight: 400;
+  opacity: 0.7;
   margin-top: ${tokens.spacingS};
 
   @media screen and (max-width: ${tokens.mobile}) {

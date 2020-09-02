@@ -10,7 +10,7 @@ export const pageQuery = graphql`
   {
     blogs: allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 2
+      limit: 3
     ) {
       edges {
         node {
@@ -33,6 +33,11 @@ export const pageQuery = graphql`
         icon_dark {
           url
         }
+        quote
+        tech {
+          framework
+        }
+        likes
         icon_light {
           url
         }
@@ -112,6 +117,7 @@ const IndexPage = (props: any) => {
     copy: { data: copy },
     blogs,
   } = props.data
+  console.log({ copy })
   const dataObject = {
     nav: {
       blog: copy.blogs,
@@ -119,10 +125,13 @@ const IndexPage = (props: any) => {
       sun: copy.icon_light.url,
       moon: copy.icon_dark.url,
       home: copy.home,
+      projects: copy.projects,
     },
     main: {
       title: copy.home_title[0].text,
-      bio: copy.bio[0].text,
+      bio: copy.quote,
+      tech: copy.tech,
+      likes: copy.likes,
       profilePhoto: copy.image.url,
       currentJob: copy.current_job[0].text,
       currentJobLink: copy.current_job_link.url,

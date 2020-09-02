@@ -29,7 +29,8 @@ export const blogPostQuery = graphql`
     }
     prismic: prismicTitle {
       data {
-        back
+        blogs
+        projects
         icon_dark {
           url
         }
@@ -60,9 +61,12 @@ const BlogPost = (props: any) => {
   } = props.data
 
   const navData = {
-    brand: data.back,
+    blog: data.blogs,
+    brand: data.site_name,
     sun: data.icon_light.url,
     moon: data.icon_dark.url,
+    home: data.home,
+    projects: data.projects,
   }
   const splitTags = (tags: string[]): string[] =>
     tags.map((t) => t.replace(/ /g, ""))

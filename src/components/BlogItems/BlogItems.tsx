@@ -1,6 +1,6 @@
 import React from "react"
 import { navigate } from "gatsby"
-import { Container, H1, Tag } from "../Layout"
+import { Container, H1, H2, Tag, HeaderContainer, Link } from "../Layout"
 import {
   Block,
   Title,
@@ -18,7 +18,14 @@ export const BlogItems = ({ dark, title, blogs, preview }: any) => {
 
   return (
     <Container dark={dark} id="blog">
-      <H1>{title}</H1>
+      <HeaderContainer preview={preview}>
+        <H2>{preview && "Latest "} Blogs</H2>
+        {preview && (
+          <Link dark={dark} onClick={() => navigate("/blogs")}>
+            View all posts
+          </Link>
+        )}
+      </HeaderContainer>
       {blogs.edges.map(({ node }: any, i: number) => {
         const {
           frontmatter: { path, title, description, date, tags },
@@ -48,11 +55,6 @@ export const BlogItems = ({ dark, title, blogs, preview }: any) => {
           </BlockWrapper>
         )
       })}
-      {preview && (
-        <Block onClick={() => handleClick("/blogs")} dark={dark}>
-          <Title>View More</Title>
-        </Block>
-      )}
     </Container>
   )
 }

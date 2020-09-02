@@ -9,6 +9,7 @@ export interface Tokens {
   spacingXl: string
   spacing2Xl: string
   spacing3Xl: string
+  spacing4Xl: string
   imageY: string
   imageX: string
   imageYMob: string
@@ -18,6 +19,7 @@ export interface Tokens {
   white: string
   hover: string
   black: string
+  grey: string
   red: string
   orangered: string
   orange: string
@@ -25,6 +27,7 @@ export interface Tokens {
   yellow: string
   lightgreen: string
   green: string
+  font: string
 }
 
 export const tokens: Tokens = {
@@ -37,13 +40,15 @@ export const tokens: Tokens = {
   spacingL: "40px",
   spacingXl: "60px",
   spacing2Xl: "80px",
-  spacing3Xl: "120px",
-  imageY: "300px",
-  imageX: "300px",
+  spacing3Xl: "128px",
+  spacing4Xl: "256px",
+  imageY: "150px",
+  imageX: "150px",
   imageYMob: "200px",
   imageXMob: "200px",
-  dark: "#1F1F22",
-  light: "#F2F2F0",
+  dark: "#1A202C",
+  grey: "#5f6c80",
+  light: "#cbd5e0",
   white: "#fff",
   hover: "#00b3b0",
   black: "#000000",
@@ -54,4 +59,5 @@ export const tokens: Tokens = {
   yellow: "#ffd700",
   lightgreen: "#5ac18e",
   green: "#008080",
+  font: '"Montserrat", sans-serif;',
 }
