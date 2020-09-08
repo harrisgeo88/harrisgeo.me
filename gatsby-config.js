@@ -5,7 +5,7 @@ module.exports = {
     title: `Harris Geo`,
     titleTemplate: "%s Personal Blog",
     description: "Sharing some cool stuff I have learned about web development",
-    url: "https://www.harrisgeo.me",
+    siteUrl: "https://www.harrisgeo.me",
     image:
       "https://images.prismic.io/harrisgeo%2Fd8abaa2d-b275-4896-a887-bd3263774172_me-snow.jpg?auto=compress,format",
     author: "@harrisgeo88",
@@ -86,6 +86,62 @@ module.exports = {
                   },
                 },
               ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-feed-generator",
+      options: {
+        generator: `GatsbyJS`,
+        rss: true, // Set to true to enable rss generation
+        json: true, // Set to true to enable json feed generation
+        siteQuery: `
+        {
+          site {
+            siteMetadata {
+              title
+              description
+              siteUrl
+              author
+            }
+          }
+        }
+      `,
+        feeds: [
+          {
+            name: "feed", // This determines the name of your feed file => /feed.json & /feed.xml
+            query: `
+          {
+            allMarkdownRemark(
+              sort: {order: DESC, fields: [frontmatter___date]},
+              limit: 100,
+              ) {
+              edges {
+                node {
+                  frontmatter {
+                    id
+                    path
+                    title
+                    description
+                    tags
+                    date
+                  }
+                }
+              }
+            }
+          }
+          `,
+            normalize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map((edge) => {
+                return {
+                  title: edge.node.frontmatter.title,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                  html: edge.node.html,
+                }
+              })
             },
           },
         ],
