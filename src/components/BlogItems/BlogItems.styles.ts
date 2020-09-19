@@ -15,6 +15,7 @@ export const Block = styled.button<DarkProps>`
   padding: 0;
   text-align: left;
   font-family: ${tokens.font};
+  margin: 2px 0;
   background-color: ${(props) => (props.dark ? tokens.dark : tokens.white)};
   color: ${(props) => (props.dark ? tokens.light : tokens.dark)};
   border: 0;

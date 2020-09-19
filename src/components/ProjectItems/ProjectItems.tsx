@@ -3,9 +3,8 @@ import { Container, H2, HeaderContainer } from "../Layout"
 import { BlockWrapper, Block, Title } from "../BlogItems/BlogItems.styles"
 
 export const ProjectItems = ({ dark, projects, preview }: any) => {
-  const handleClick = (path: any) => {
-    location.href = path
-  }
+  const handleClick = (path: any) =>
+    window.open(path, "_blank", "noopener,noreferrer")
   return (
     <Container dark={dark} id="blog">
       <HeaderContainer preview={preview}>
