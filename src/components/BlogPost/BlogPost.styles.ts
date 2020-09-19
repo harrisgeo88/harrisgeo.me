@@ -38,7 +38,7 @@ export const PostContainer = styled.div<{ dark: boolean }>`
 
   > ol > li > a,
   > p > a {
-    color: ${props => (props.dark ? tokens.white : tokens.dark)};
+    color: ${(props) => (props.dark ? tokens.white : tokens.dark)};
     font-weight: 600;
     :hover {
       color: ${tokens.hover};
@@ -59,7 +59,6 @@ export const PostContainer = styled.div<{ dark: boolean }>`
       max-width: 700px;
     }
   }
-
 `
 export const H1 = styled(H1Layout)`
   font-family: ${font};
@@ -83,6 +82,6 @@ export const TagWrapper = styled.div`
 `
 
 export const Tag = styled(TagLayout)`
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: ${tokens.spacingXs};
+  margin-bottom: ${tokens.spacingXs};
 `

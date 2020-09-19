@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
-import { Layout, Frame } from "../Layout"
-import { getDarkValue, setDarkValue } from "../../helpers/localStorage"
-import { BlogItems } from "../BlogItems"
-import { SEO } from "../SEO"
+import { Layout, Frame } from "../components/Layout"
+import { getDarkValue, setDarkValue } from "../helpers/localStorage"
+import { SEO } from "../components/SEO"
+import { ProjectItems } from "../components/ProjectItems"
 
 export const pageQuery = graphql`
   {
@@ -30,27 +30,22 @@ export const pageQuery = graphql`
         blogs
         projects
         feed
-        iwomm
-        nodejs
-        react
-        javascript
-        talk
-        testing
-        blog_title {
-          text
+        project_items {
+          project_url {
+            url
+          }
+          project_name
         }
       }
     }
   }
 `
 
-const TagsPage = (props: any) => {
+const BlogsPage = (props: any) => {
   const [darkMode, setDarkMode] = useState(getDarkValue())
-  const { path, data } = props
   const {
     copy: { data: copy },
-    blogs: allBlogs,
-  } = data
+  } = props.data
   const dataObject = {
     nav: {
       blog: copy.blogs,
@@ -59,27 +54,8 @@ const TagsPage = (props: any) => {
       projects: copy.projects,
       feed: copy.feed,
     },
-    blog: {
-      title: copy.blog_title[0].text,
-    },
+    projects: copy.project_items,
   }
-
-  const blogs: any = { edges: [] }
-  const pathTag = path.replace("/tags/", "")
-  allBlogs.edges.forEach((blog: any) => {
-    if (blog.node.frontmatter.tags.includes(pathTag)) {
-      blogs.edges.push(blog)
-    }
-  })
-
-  const tagTitle = (text: string): string => {
-    return (
-      copy[text.replace(".", "")] ||
-      `${text.charAt(0).toUpperCase()}${text.slice(1)}`
-    )
-  }
-
-  const tag = tagTitle(pathTag)
   const toggleDarkMode = () => {
     setDarkValue(!darkMode)
     setDarkMode(!darkMode)
@@ -87,17 +63,15 @@ const TagsPage = (props: any) => {
 
   return (
     <Frame dark={darkMode}>
-      <SEO title={tag} />
+      <SEO title="Projects" />
       <Layout
         {...dataObject.nav}
         dark={darkMode}
         toggleDarkMode={toggleDarkMode}
       >
-        <BlogItems
-          {...dataObject.blog}
-          title={tag}
+        <ProjectItems
+          projects={dataObject.projects}
           dark={darkMode}
-          blogs={blogs}
           preview={false}
         />
       </Layout>
@@ -105,4 +79,4 @@ const TagsPage = (props: any) => {
   )
 }
 
-export default TagsPage
+export default BlogsPage

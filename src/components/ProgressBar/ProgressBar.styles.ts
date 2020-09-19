@@ -9,7 +9,7 @@ interface ProgressBarProps {
 export const ProgressBarWrapper = styled.div`
   position: sticky;
   left: 0;
-  top: 38px;
+  top: -1px;
   z-index: 99;
   width: 100%;
   height: 5px;

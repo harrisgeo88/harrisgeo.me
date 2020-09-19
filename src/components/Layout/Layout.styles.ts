@@ -1,8 +1,7 @@
 import styled from "styled-components"
 import { tokens } from "../tokens"
-// TODO: use styled system instead of tokens
 import { layout, space, LayoutProps, SpaceProps } from "styled-system"
-import { selection, outline } from "../styleHelpers"
+import { selection, outline, buttonResetStyles } from "../styleHelpers"
 
 interface StyledSystemProps extends LayoutProps, SpaceProps {}
 
@@ -10,15 +9,11 @@ interface Dark {
   dark: boolean
 }
 
-interface Small {
-  small?: boolean
-}
-
 export const Frame = styled.div<Dark>`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${(props) => (props.dark ? tokens.dark : tokens.light)};
+  background: ${(props) => (props.dark ? tokens.dark : tokens.white)};
   height: 100%;
   width: 100%;
   overflow: scroll;
@@ -32,28 +27,40 @@ export const Frame = styled.div<Dark>`
 
 export const Body = styled.div<Dark>`
   position: absolute;
-  left: 0;
-  top: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: ${tokens.font};
   width: 100%;
   height: 100%;
-  color: ${(props) => (props.dark ? tokens.light : tokens.dark)};
+  color: ${(props) => (props.dark ? tokens.white : tokens.dark)};
+  -webkit-font-smoothing: antialiased;
 `
 
-export const Container = styled.div<Dark>`
-  position: sticky;
-  margin: ${tokens.spacingXl} auto;
-  width: 800px;
-  height: calc(100% - ${tokens.spacing3Xl});
-  background: ${(props) => (props.dark ? tokens.dark : tokens.light)};
+export const Navbar = styled.header<Dark>`
+  margin: 0 ${tokens.spacing3Xl};
+  padding: 0 ${tokens.spacingL};
+  background-color: ${(props) => (props.dark ? tokens.dark : tokens.white)};
+  color: ${(props) => (props.dark ? "#5f6c80" : "#7f8ea3")};
+  margin-bottom: ${tokens.spacing3Xl};
 
   @media screen and (max-width: ${tokens.mobile}) {
-    margin: auto;
-    width: 350px;
-    padding-top: ${tokens.spacing2Xl};
-    padding-left: 0;
-    padding-right: 0;
-    height: calc(100% - ${tokens.spacing2Xl});
+    margin: 0;
+  }
+
+  @media screen and (min-width: ${tokens.mobile}) and (max-width: ${tokens.tablet}) {
+    padding: 0 ${tokens.spacingL};
+    margin: 0 ${tokens.spacingXl};
+  }
+`
+
+export const Container = styled.section<Dark>`
+  margin: 0 ${tokens.spacing3Xl};
+  padding: 0 ${tokens.spacingL};
+  background: ${(props) => (props.dark ? tokens.dark : tokens.white)};
+  margin-top: ${tokens.spacing3Xl};
+  margin-bottom: ${tokens.spacing4Xl};
+
+  @media screen and (max-width: ${tokens.mobile}) {
+    margin: 0;
+    margin-top: 40px;
   }
 
   @media screen and (max-width: ${tokens.mobileXs}) {
@@ -61,36 +68,66 @@ export const Container = styled.div<Dark>`
   }
 
   @media screen and (min-width: ${tokens.mobile}) and (max-width: ${tokens.tablet}) {
-    width: 700px;
+    margin-left: ${tokens.spacingXl};
+    margin-right: ${tokens.spacingXl};
   }
-`
 
-export const Section = styled.div`
-  position: relative;
-  height: 100%;
-  background: red;
-  border-top: 2px solid white;
-`
-
-export const Link = styled.a<Dark>`
-  color: ${(props) => (props.dark ? tokens.light : tokens.dark)};
-  font-weight: 500;
-
-  &:hover {
-    color: ${tokens.hover};
+  &&&#blog {
+    margin-bottom: 50px;
   }
 `
 
 export const Wrapper = styled.div`
   display: flex;
-
-  @media all and (min-width: ${tokens.mobile}) {
-    position: absolute;
-    top: calc(50% - 150px);
-  }
+  align-items: flex-start;
 
   @media all and (max-width: ${tokens.mobile}) {
     display: block;
+  }
+`
+
+export const Bio = styled.div`
+  margin: 0;
+  padding: 0 ${tokens.spacing};
+  font-weight: 200;
+  font-size: 24px;
+  text-align: left;
+
+  @media screen and (max-width: ${tokens.mobile}) {
+    font-size: 16px;
+    margin-top: ${tokens.spacing};
+    padding: 0;
+  }
+  > p {
+    margin: 0;
+  }
+`
+
+export const IconsContainer = styled.div`
+  margin-top: ${tokens.spacing};
+  &&& > a:first-child {
+    padding-left: 0;
+  }
+  &&& > a {
+    padding: 0 ${tokens.spacingXs};
+  }
+  text-align: left;
+
+  @media screen and (max-width: ${tokens.mobile}) {
+    text-align: center;
+  }
+`
+
+export const Link = styled.a.attrs({ as: "button" })<Dark>`
+  ${buttonResetStyles};
+  color: ${(props) => (props.dark ? tokens.light : tokens.dark)};
+  font-weight: 300;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0 ${tokens.spacingXs};
+
+  &:hover {
+    text-decoration: underline;
   }
 `
 
@@ -100,12 +137,12 @@ export const Icon = styled.img<StyledSystemProps>`
 `
 
 export const SocialMediaIcon = styled(Icon)`
-  margin: 5px;
+  margin: ${tokens.spacingXs};
 `
 
 // TODO: make a function for doing token calculations
 export const Image = styled.img`
-  border-radius: 3px;
+  border-radius: 300px;
   border: 1px solid grey;
   height: ${tokens.imageY};
   width: ${tokens.imageX};
@@ -118,44 +155,31 @@ export const Image = styled.img`
   }
 `
 
-export const Bio = styled.div`
-  margin: 0;
-  padding: 0 ${tokens.spacing};
-  font-size: 28px;
-
-  @media screen and (max-width: ${tokens.mobile}) {
-    font-size: 20px;
-    margin-top: ${tokens.spacing};
-    text-align: center;
-  }
-  > p {
-    margin: 0;
-  }
+export const HeaderContainer = styled.div<{ preview: boolean }>`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: ${(props) =>
+    props.preview ? `1px solid ${tokens.light}` : "none"};
+  margin-bottom: ${tokens.spacing};
+  padding: 0 ${tokens.spacingXs};
 `
 
-export const Box = styled.div<Small>`
-  padding: ${tokens.spacing} 0;
-
-  @media screen and (max-width: ${tokens.mobile}) {
-    padding: ${(props) => (props.small ? 0 : 20)};
-  }
-`
-
-export const IconsContainer = styled.div`
-  &&& > a {
-    padding: 0 5px;
-  }
+export const H2 = styled.h2`
+  font-size: 30px;
+  font-weight: 400;
+  padding-bottom: 0;
 `
 
 export const H1 = styled.h1`
   width: 100%;
-  text-align: center;
   font-weight: 500;
-  font-size: 66px;
-  margin-bottom: 30px;
+  font-size: 48px;
+  margin-bottom: ${tokens.spacingXl};
 
   @media screen and (max-width: ${tokens.mobile}) {
-    font-size: 26px;
+    font-size: 30px;
   }
 `
 
@@ -172,7 +196,7 @@ export const Tag = styled.a.attrs({ as: "button" })<Dark>`
   font-weight: 600;
   color: ${(props) => (props.dark ? tokens.dark : tokens.light)};
   border-radius: 5px;
-  background-color: ${(props) => (props.dark ? tokens.light : tokens.dark)};
+  background-color: ${(props) => (props.dark ? tokens.white : tokens.dark)};
   padding: ${tokens.spacingXs} ${tokens.spacingS};
   cursor: pointer;
 
@@ -180,3 +204,114 @@ export const Tag = styled.a.attrs({ as: "button" })<Dark>`
     color: ${tokens.hover};
   }
 `
+
+export const TopRow = styled.div<Dark>`
+  display: flex;
+  line-height: 18px;
+  justify-content: space-between;
+  padding-top: ${tokens.spacingL};
+
+  &&& > button:first-child {
+    color: ${(props) => (props.dark ? "#fff" : "#000")};
+    font-size: 30px;
+    :hover {
+      text-decoration: none;
+    }
+  }
+`
+
+export const BottomRow = styled.div<Dark>`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+  padding: ${tokens.spacingS} 0;
+  border-bottom: 1px solid ${tokens.light};
+  color: ${tokens.grey};
+
+  &&& > div > button {
+    color: ${(props) => (props.dark ? tokens.light : tokens.grey)};
+  }
+
+  &&& > ul:first-child {
+    padding-left: 0;
+  }
+`
+
+export const NavItem = styled.button`
+  cursor: pointer;
+  font-size: 18px;
+  border: none;
+  background: transparent;
+
+  margin: ${tokens.spacingS} 0;
+  :hover {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: ${tokens.mobile}) {
+    margin: ${tokens.spacingS} 0;
+    padding: ${tokens.spacingXs};
+  }
+`
+export const IconContainer = styled.div`
+  transition: opacity 0.3s ease 0s;
+`
+
+export const MoonIcon = styled.span`
+  height: 24px;
+  width: 24px;
+  padding-top: -14px;
+  display: block;
+  border-radius: 50%;
+  box-shadow: inset 8px -8px 0px 0px #fff;
+  transition: all 0.45s ease 0s;
+`
+
+export const SunIcon = styled.span`
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 24px;
+  height: 24px;
+
+  background: linear-gradient(to bottom, currentColor 4px, transparent 0)
+      no-repeat 5px -6px/2px 6px,
+    linear-gradient(to bottom, currentColor 4px, transparent 0) no-repeat 5px
+      14px/2px 6px,
+    linear-gradient(to bottom, currentColor 4px, transparent 0) no-repeat -8px 5px/6px
+      2px,
+    linear-gradient(to bottom, currentColor 4px, transparent 0) no-repeat 14px
+      5px/6px 2px;
+  border-radius: 100px;
+  box-shadow: inset 0 0 0 2px;
+  border: 6px solid transparent;
+
+  &&&:after,
+  &&&:before {
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    border-right: 4px solid;
+    border-left: 4px solid;
+    left: -6px;
+    top: ${tokens.spacingXs};
+  }
+
+  &&&:before {
+    transform: rotate(-45deg);
+  }
+  &&&:after {
+    transform: rotate(45deg);
+  }
+
+  transition: all 0.45s ease 0s;
+`
+
+export const LeftContainer = styled.div``
+
+export const RightContainer = styled.div``

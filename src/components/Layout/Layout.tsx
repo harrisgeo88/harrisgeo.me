@@ -1,37 +1,50 @@
-import React, { Fragment } from "react";
-import { Body, Icon } from "./Layout.styles";
-import { Navbar, NavItem } from "swag-components";
-import { navigate } from "gatsby";
+import React from "react"
+import {
+  Body,
+  Navbar,
+  NavItem,
+  TopRow,
+  BottomRow,
+  MoonIcon,
+  SunIcon,
+  IconContainer,
+  LeftContainer,
+  RightContainer,
+} from "./Layout.styles"
+import { navigate } from "gatsby"
 
 export const Layout = ({
   children,
-  isLandingPage = true,
   blog = "",
-  home = "",
-  brand = "",
+  projects = "",
+  feed = "",
   dark = false,
-  moon = "",
-  sun = "",
   toggleDarkMode = null,
 }: any) => {
   const goto = (url = "") => {
-    navigate(url);
-  };
+    navigate(url)
+  }
 
   return (
     <Body dark={dark}>
-      <Navbar onTitleClick={() => goto("/")} title={brand} dark={dark}>
-        {isLandingPage && (
-          <Fragment>
-            <NavItem onClick={() => goto("/")}>{home}</NavItem>
+      <Navbar dark={dark}>
+        <TopRow dark={dark}>
+          <NavItem onClick={() => goto("/")}>Harris Geo</NavItem>
+          <NavItem onClick={toggleDarkMode}>
+            <IconContainer>{dark ? <MoonIcon /> : <SunIcon />}</IconContainer>
+          </NavItem>
+        </TopRow>
+        <BottomRow dark={dark}>
+          <LeftContainer>
             <NavItem onClick={() => goto("/blogs")}>{blog}</NavItem>
-          </Fragment>
-        )}
-        <NavItem onClick={toggleDarkMode}>
-          <Icon src={dark ? sun : moon} width={18} height={18} display="flex" />
-        </NavItem>
+            <NavItem onClick={() => goto("/projects")}>{projects}</NavItem>
+          </LeftContainer>
+          <RightContainer>
+            <NavItem onClick={() => goto("/feed.xml")}>{feed}</NavItem>
+          </RightContainer>
+        </BottomRow>
       </Navbar>
       {children}
     </Body>
-  );
-};
+  )
+}

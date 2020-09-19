@@ -28,12 +28,8 @@ export const pageQuery = graphql`
         site_name
         home
         blogs
-        icon_dark {
-          url
-        }
-        icon_light {
-          url
-        }
+        projects
+        feed
         blog_title {
           text
         }
@@ -51,9 +47,9 @@ const BlogsPage = (props: any) => {
   const dataObject = {
     nav: {
       blog: copy.blogs,
+      projects: copy.projects,
+      feed: copy.feed,
       brand: copy.site_name,
-      sun: copy.icon_light.url,
-      moon: copy.icon_dark.url,
       home: copy.home,
     },
     blog: {
