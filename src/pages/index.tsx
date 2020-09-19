@@ -5,6 +5,7 @@ import { Main } from "../components/Main"
 import { getDarkValue, setDarkValue } from "../helpers/localStorage"
 import { Layout, Frame } from "../components/Layout"
 import { SEO } from "../components/SEO"
+import { ProjectItems } from "../components/ProjectItems"
 
 export const pageQuery = graphql`
   {
@@ -30,8 +31,13 @@ export const pageQuery = graphql`
         site_name
         home
         blogs
-        icon_dark {
-          url
+        projects
+        feed
+        project_items {
+          project_url {
+            url
+          }
+          project_name
         }
         quote
         tech {
@@ -117,15 +123,14 @@ const IndexPage = (props: any) => {
     copy: { data: copy },
     blogs,
   } = props.data
-  console.log({ copy })
+  
   const dataObject = {
     nav: {
       blog: copy.blogs,
       brand: copy.site_name,
-      sun: copy.icon_light.url,
-      moon: copy.icon_dark.url,
       home: copy.home,
       projects: copy.projects,
+      feed: copy.feed,
     },
     main: {
       title: copy.home_title[0].text,
@@ -152,6 +157,7 @@ const IndexPage = (props: any) => {
     blog: {
       title: copy.blog_title[0].text,
     },
+    projects: copy.project_items,
   }
 
   const toggleDarkMode = () => {
@@ -174,6 +180,11 @@ const IndexPage = (props: any) => {
           dark={darkMode}
           blogs={blogs}
           preview={true}
+        />
+        <ProjectItems
+          projects={dataObject.projects}
+          dark={darkMode}
+          preview={false}
         />
       </Layout>
     </Frame>

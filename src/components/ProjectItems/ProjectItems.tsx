@@ -1,28 +1,26 @@
 import React from "react"
-import { navigate } from "gatsby"
-import { Container, H1, H2, Tag, HeaderContainer, Link } from "../Layout"
-import { reformatDate } from "../../helpers/reformatDate"
+import { Container, H2, HeaderContainer } from "../Layout"
 import { BlockWrapper, Block, Title } from "../BlogItems/BlogItems.styles"
 
-export const ProjectItems = ({ dark, title, preview }: any) => {
+export const ProjectItems = ({ dark, projects, preview }: any) => {
   const handleClick = (path: any) => {
-    navigate(path)
+    location.href = path
   }
-
   return (
     <Container dark={dark} id="blog">
       <HeaderContainer preview={preview}>
-        <H2>{preview && "Latest "} Projects</H2>
-        {preview && (
-          <Link dark={dark} onClick={() => navigate("/blogs")}>
-            View all posts
-          </Link>
-        )}
+        <H2>Projects</H2>
       </HeaderContainer>
       <BlockWrapper>
-        <Block dark={dark}>
-          <Title>This is a long title because why not</Title>
-        </Block>
+        {projects.map((project: any, i: number) => (
+          <Block
+            key={i}
+            dark={dark}
+            onClick={() => handleClick(project.project_url.url)}
+          >
+            <Title>{project.project_name}</Title>
+          </Block>
+        ))}
       </BlockWrapper>
     </Container>
   )

@@ -28,18 +28,14 @@ export const pageQuery = graphql`
         site_name
         home
         blogs
+        projects
+        feed
         iwomm
         nodejs
         react
         javascript
         talk
         testing
-        icon_dark {
-          url
-        }
-        icon_light {
-          url
-        }
         blog_title {
           text
         }
@@ -59,9 +55,9 @@ const TagsPage = (props: any) => {
     nav: {
       blog: copy.blogs,
       brand: copy.site_name,
-      sun: copy.icon_light.url,
-      moon: copy.icon_dark.url,
       home: copy.home,
+      projects: copy.projects,
+      feed: copy.feed,
     },
     blog: {
       title: copy.blog_title[0].text,

@@ -2,25 +2,30 @@ import React, { Fragment } from "react"
 import {
   Wrapper,
   ProfilePhoto,
-  H1,
   Bio,
   Link,
   Container,
   SocialMediaIcon,
   IconsContainer,
 } from "../Layout"
-import { Parser } from "html-to-react"
 
-const parser = new Parser()
+interface IconOption {
+  url: string
+  lightImg: {
+    alt: string
+    url: string
+  }
+  darkImg: {
+    alt: string
+    url: string
+  }
+}
 
 export const Main = (props: any) => {
   const {
     bio,
     tech,
     likes,
-    currentJob,
-    currentJobLink,
-    currentJobLinkText,
     dark,
     githubImgDark,
     githubImgLight,
@@ -29,7 +34,6 @@ export const Main = (props: any) => {
     devImgLight,
     devImgDark,
     profilePhoto,
-    title,
     githubUrl,
     twitterUrl,
     devUrl,
@@ -48,6 +52,33 @@ export const Main = (props: any) => {
     }
   }
 
+  const openURL = (url: string) => {
+    window.open(url, "_blank", "noopener,noreferrer")
+  }
+
+  const iconOptions: IconOption[] = [
+    {
+      url: githubUrl,
+      lightImg: githubImgLight,
+      darkImg: githubImgDark,
+    },
+    {
+      url: twitterUrl,
+      lightImg: twitterImgLight,
+      darkImg: twitterImgDark,
+    },
+    {
+      url: devUrl,
+      lightImg: devImgLight,
+      darkImg: devImgDark,
+    },
+    {
+      url: liUrl,
+      lightImg: liImgLight,
+      darkImg: liImgDark,
+    },
+  ]
+
   return (
     <Container dark={dark} id="home">
       <Wrapper>
@@ -62,42 +93,19 @@ export const Main = (props: any) => {
           ))}
           {likes}
           <IconsContainer>
-            <Link href={githubUrl} target="_blank" dark={dark}>
-              <SocialMediaIcon
-                src={dark ? githubImgLight.url : githubImgDark.url}
-                alt={dark ? githubImgLight.alt : githubImgDark.alt}
-                width={30}
-                height={30}
-                mr={10}
-              />
-            </Link>
-            <Link href={twitterUrl} target="_blank" dark={dark}>
-              <SocialMediaIcon
-                src={dark ? twitterImgLight.url : twitterImgDark.url}
-                alt={dark ? twitterImgLight.alt : twitterImgDark.alt}
-                width={30}
-                height={30}
-                ml={10}
-              />
-            </Link>
-            <Link href={devUrl} target="_blank" dark={dark}>
-              <SocialMediaIcon
-                src={dark ? devImgLight.url : devImgDark.url}
-                alt={dark ? devImgLight.alt : devImgDark.alt}
-                width={30}
-                height={30}
-                ml={10}
-              />
-            </Link>
-            <Link href={liUrl} target="_blank" dark={dark}>
-              <SocialMediaIcon
-                src={dark ? liImgLight.url : liImgDark.url}
-                alt={dark ? liImgLight.alt : liImgDark.alt}
-                width={30}
-                height={30}
-                ml={10}
-              />
-            </Link>
+            {iconOptions.map(
+              ({ url, lightImg, darkImg }: IconOption, i: number) => (
+                <Link key={i} onClick={() => openURL(url)} dark={dark}>
+                  <SocialMediaIcon
+                    src={dark ? lightImg.url : darkImg.url}
+                    alt={dark ? lightImg.alt : darkImg.alt}
+                    width={30}
+                    height={30}
+                    ml={10}
+                  />
+                </Link>
+              )
+            )}
           </IconsContainer>
         </Bio>
       </Wrapper>

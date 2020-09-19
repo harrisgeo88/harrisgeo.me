@@ -1,7 +1,6 @@
 import React from "react"
 import {
   Body,
-  Icon,
   Navbar,
   NavItem,
   TopRow,
@@ -9,21 +8,20 @@ import {
   MoonIcon,
   SunIcon,
   IconContainer,
+  LeftContainer,
+  RightContainer,
 } from "./Layout.styles"
 import { navigate } from "gatsby"
 
 export const Layout = ({
   children,
-  isLandingPage = true,
   blog = "",
-  home = "",
   projects = "",
-  brand = "",
+  feed = "",
   dark = false,
   toggleDarkMode = null,
 }: any) => {
   const goto = (url = "") => {
-    console.log("yo")
     navigate(url)
   }
 
@@ -37,8 +35,13 @@ export const Layout = ({
           </NavItem>
         </TopRow>
         <BottomRow dark={dark}>
-          <NavItem onClick={() => goto("/blogs")}>{blog}</NavItem>
-          <NavItem onClick={() => goto("/projects")}>Projects</NavItem>
+          <LeftContainer>
+            <NavItem onClick={() => goto("/blogs")}>{blog}</NavItem>
+            <NavItem onClick={() => goto("/projects")}>{projects}</NavItem>
+          </LeftContainer>
+          <RightContainer>
+            <NavItem onClick={() => goto("/feed.xml")}>{feed}</NavItem>
+          </RightContainer>
         </BottomRow>
       </Navbar>
       {children}

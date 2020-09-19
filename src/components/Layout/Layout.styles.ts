@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 import { tokens } from "../tokens"
 import { layout, space, LayoutProps, SpaceProps } from "styled-system"
 import { selection, outline, buttonResetStyles } from "../styleHelpers"
@@ -34,18 +34,32 @@ export const Body = styled.div<Dark>`
   -webkit-font-smoothing: antialiased;
 `
 
+export const Navbar = styled.header<Dark>`
+  margin: 0 ${tokens.spacing3Xl};
+  padding: 0 ${tokens.spacingL};
+  background-color: ${(props) => (props.dark ? tokens.dark : tokens.white)};
+  color: ${(props) => (props.dark ? "#5f6c80" : "#7f8ea3")};
+  margin-bottom: ${tokens.spacing3Xl};
+
+  @media screen and (max-width: ${tokens.mobile}) {
+    margin: 0;
+  }
+
+  @media screen and (min-width: ${tokens.mobile}) and (max-width: ${tokens.tablet}) {
+    padding: 0 ${tokens.spacingL};
+    margin: 0 ${tokens.spacingXl};
+  }
+`
+
 export const Container = styled.section<Dark>`
-  position: relative;
+  margin: 0 ${tokens.spacing3Xl};
+  padding: 0 ${tokens.spacingL};
   background: ${(props) => (props.dark ? tokens.dark : tokens.white)};
-  margin: 0 128px;
-  padding: 0 32px;
   margin-top: ${tokens.spacing3Xl};
   margin-bottom: ${tokens.spacing4Xl};
 
   @media screen and (max-width: ${tokens.mobile}) {
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0 20px;
+    margin: 0;
     margin-top: 40px;
   }
 
@@ -54,7 +68,8 @@ export const Container = styled.section<Dark>`
   }
 
   @media screen and (min-width: ${tokens.mobile}) and (max-width: ${tokens.tablet}) {
-    padding: 0 32px;
+    margin-left: ${tokens.spacingXl};
+    margin-right: ${tokens.spacingXl};
   }
 
   &&&#blog {
@@ -89,12 +104,12 @@ export const Bio = styled.div`
 `
 
 export const IconsContainer = styled.div`
-  margin-top: 20px;
+  margin-top: ${tokens.spacing};
   &&& > a:first-child {
     padding-left: 0;
   }
   &&& > a {
-    padding: 0 5px;
+    padding: 0 ${tokens.spacingXs};
   }
   text-align: left;
 
@@ -109,7 +124,7 @@ export const Link = styled.a.attrs({ as: "button" })<Dark>`
   font-weight: 300;
   text-decoration: none;
   cursor: pointer;
-  margin: 0 5px;
+  margin: 0 ${tokens.spacingXs};
 
   &:hover {
     text-decoration: underline;
@@ -122,7 +137,7 @@ export const Icon = styled.img<StyledSystemProps>`
 `
 
 export const SocialMediaIcon = styled(Icon)`
-  margin: 5px;
+  margin: ${tokens.spacingXs};
 `
 
 // TODO: make a function for doing token calculations
@@ -147,8 +162,8 @@ export const HeaderContainer = styled.div<{ preview: boolean }>`
   align-items: center;
   border-bottom: ${(props) =>
     props.preview ? `1px solid ${tokens.light}` : "none"};
-  margin-bottom: 20px;
-  padding: 0 5px;
+  margin-bottom: ${tokens.spacing};
+  padding: 0 ${tokens.spacingXs};
 `
 
 export const H2 = styled.h2`
@@ -161,7 +176,7 @@ export const H1 = styled.h1`
   width: 100%;
   font-weight: 500;
   font-size: 48px;
-  margin-bottom: 30px;
+  margin-bottom: ${tokens.spacingXl};
 
   @media screen and (max-width: ${tokens.mobile}) {
     font-size: 30px;
@@ -190,29 +205,11 @@ export const Tag = styled.a.attrs({ as: "button" })<Dark>`
   }
 `
 
-export const Navbar = styled.header<Dark>`
-  margin: 0 128px;
-  padding: 0 32px;
-  background-color: ${(props) => (props.dark ? tokens.dark : tokens.white)};
-  color: ${(props) => (props.dark ? "#5f6c80" : "#7f8ea3")};
-  margin-bottom: ${tokens.spacing3Xl};
-
-  @media screen and (min-width: ${tokens.mobile}) and (max-width: ${tokens.tablet}) {
-    padding: 0 32px;
-    margin: 0;
-  }
-
-  @media screen and (max-width: ${tokens.mobile}) {
-    margin: 0;
-    padding: 0;
-  }
-`
-
 export const TopRow = styled.div<Dark>`
   display: flex;
   line-height: 18px;
   justify-content: space-between;
-  padding-top: 30px;
+  padding-top: ${tokens.spacingL};
 
   &&& > button:first-child {
     color: ${(props) => (props.dark ? "#fff" : "#000")};
@@ -221,32 +218,23 @@ export const TopRow = styled.div<Dark>`
       text-decoration: none;
     }
   }
-
-  @media screen and (max-width: ${tokens.mobile}) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
 `
 
 export const BottomRow = styled.div<Dark>`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   text-align: left;
-  padding: 10px 0;
-  border-bottom: 1px solid #cbd5e0;
-  color: #5f6c80;
+  padding: ${tokens.spacingS} 0;
+  border-bottom: 1px solid ${tokens.light};
+  color: ${tokens.grey};
 
-  &&& > button {
+  &&& > div > button {
     color: ${(props) => (props.dark ? tokens.light : tokens.grey)};
   }
 
   &&& > ul:first-child {
     padding-left: 0;
-  }
-
-  @media screen and (max-width: ${tokens.mobile}) {
-    margin-left: 20px;
-    margin-right: 20px;
   }
 `
 
@@ -256,14 +244,14 @@ export const NavItem = styled.button`
   border: none;
   background: transparent;
 
-  margin: 10px 0;
+  margin: ${tokens.spacingS} 0;
   :hover {
     text-decoration: underline;
   }
 
   @media screen and (max-width: ${tokens.mobile}) {
-    margin: 10px 0;
-    padding: 5px;
+    margin: ${tokens.spacingS} 0;
+    padding: ${tokens.spacingXs};
   }
 `
 export const IconContainer = styled.div`
@@ -279,7 +267,6 @@ export const MoonIcon = styled.span`
   box-shadow: inset 8px -8px 0px 0px #fff;
   transition: all 0.45s ease 0s;
 `
-// box-shadow: 5px 5px 0 0 #5f6c80;
 
 export const SunIcon = styled.span`
   box-sizing: border-box;
@@ -312,7 +299,7 @@ export const SunIcon = styled.span`
     border-right: 4px solid;
     border-left: 4px solid;
     left: -6px;
-    top: 5px;
+    top: ${tokens.spacingXs};
   }
 
   &&&:before {
@@ -324,3 +311,7 @@ export const SunIcon = styled.span`
 
   transition: all 0.45s ease 0s;
 `
+
+export const LeftContainer = styled.div``
+
+export const RightContainer = styled.div``

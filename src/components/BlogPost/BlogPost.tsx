@@ -31,12 +31,7 @@ export const blogPostQuery = graphql`
       data {
         blogs
         projects
-        icon_dark {
-          url
-        }
-        icon_light {
-          url
-        }
+        feed
         footer_questions
         social_media {
           social_text
@@ -63,8 +58,7 @@ const BlogPost = (props: any) => {
   const navData = {
     blog: data.blogs,
     brand: data.site_name,
-    sun: data.icon_light.url,
-    moon: data.icon_dark.url,
+    feed: data.feed,
     home: data.home,
     projects: data.projects,
   }
