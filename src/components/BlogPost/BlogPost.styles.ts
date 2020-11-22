@@ -51,7 +51,7 @@ export const PostContainer = styled.div<{ dark: boolean }>`
 
   @media screen and (max-width: ${tokens.mobile}) {
     img {
-      max-width: 350px;
+      max-width: 300px;
     }
   }
   @media screen and (min-width: ${tokens.mobile}) and (max-width: ${tokens.tablet}) {
