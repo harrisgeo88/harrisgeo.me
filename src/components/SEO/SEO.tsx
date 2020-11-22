@@ -37,8 +37,8 @@ export const SEO = ({
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
-          name: `description`,
-          content: metaDescription,
+          name: `author`,
+          content: site.siteMetadata.author,
         },
         {
           property: `og:title`,
@@ -49,6 +49,7 @@ export const SEO = ({
           content: metaDescription,
         },
         {
+          name: `image`,
           property: `og:image`,
           content: image,
         },
