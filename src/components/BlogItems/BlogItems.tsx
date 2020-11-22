@@ -19,7 +19,7 @@ export const BlogItems = ({ dark, title, blogs, preview }: any) => {
   return (
     <Container dark={dark} id="blog">
       <HeaderContainer preview={preview}>
-        <H2>{preview && "Latest "} Blogs</H2>
+        <H2>{preview && "Latest "} {title} </H2>
         {preview && (
           <Link dark={dark} onClick={() => navigate("/blogs")}>
             View all posts
