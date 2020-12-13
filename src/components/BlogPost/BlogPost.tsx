@@ -65,6 +65,8 @@ const BlogPost = (props: any) => {
   const splitTags = (tags: string[]): string[] =>
     tags.map((t) => t.replace(/ /g, ""))
 
+  const handleClick = (path: any) =>
+    window.open(path, "_blank", "noopener,noreferrer")
   return (
     <Frame
       dark={darkMode}
@@ -107,7 +109,7 @@ const BlogPost = (props: any) => {
               ({ social_text, social_name, social_link }: any, i: number) => (
                 <P key={i}>
                   {social_text}&nbsp;
-                  <Link dark={darkMode} target="_blank" href={social_link}>
+                  <Link dark={darkMode} onClick={() => handleClick(social_link)}>
                     {social_name}
                   </Link>
                 </P>
