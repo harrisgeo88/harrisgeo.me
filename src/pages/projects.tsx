@@ -4,25 +4,10 @@ import { Layout, Frame } from "../components/Layout"
 import { getDarkValue, setDarkValue } from "../helpers/localStorage"
 import { SEO } from "../components/SEO"
 import { ProjectItems } from "../components/ProjectItems"
+import { CopyData } from "../types"
 
 export const pageQuery = graphql`
   {
-    blogs: allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          frontmatter {
-            id
-            path
-            title
-            description
-            date
-            tags
-          }
-        }
-      }
-    }
     copy: prismicTitle {
       data {
         site_name
@@ -41,11 +26,15 @@ export const pageQuery = graphql`
   }
 `
 
-const BlogsPage = (props: any) => {
+interface ProjectProps {
+  data: {
+    copy: CopyData;
+  }
+}
+
+const BlogsPage = ({ data }: ProjectProps) => {
   const [darkMode, setDarkMode] = useState(getDarkValue())
-  const {
-    copy: { data: copy },
-  } = props.data
+  const copy = data.copy.data
   const dataObject = {
     nav: {
       blog: copy.blogs,
@@ -56,6 +45,7 @@ const BlogsPage = (props: any) => {
     },
     projects: copy.project_items,
   }
+
   const toggleDarkMode = () => {
     setDarkValue(!darkMode)
     setDarkMode(!darkMode)

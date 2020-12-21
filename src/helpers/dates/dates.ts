@@ -1,11 +1,13 @@
+type NumberOrString = number | string;
+
 /**
  * Get the date today
  * @returns {string} format "DD-MM-YYYY"
  */
 export const dateToday = () => {
   let today = new Date();
-  let dd: any = today.getDate();
-  let mm: any = today.getMonth() + 1; //January is 0!
+  let dd: NumberOrString = today.getDate();
+  let mm: NumberOrString = today.getMonth() + 1; // January is 0!
 
   let yyyy = today.getFullYear();
   if (dd < 10) {

@@ -112,7 +112,9 @@ export const Bio = styled.div`
 export const TypedContainer = styled.div`
   display: flex;
 `
-export const TypedContent = styled.div``
+export const TypedContent = styled.div`
+  padding: 0 ${tokens.spacing2Xs};
+`
 
 export const IconsContainer = styled.div`
   margin-top: ${tokens.spacing};

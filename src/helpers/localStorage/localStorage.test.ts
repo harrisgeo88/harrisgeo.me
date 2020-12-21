@@ -1,10 +1,14 @@
 import { getDarkValue, getItem, setItem, setDarkValue } from "./localStorage"
 
-let ls: any = {}
+interface LocalStorage {
+  [key: string]: string;
+}
+
+let ls: LocalStorage = {}
 const localStorageMock = () => {}
 Object.defineProperty(window, "localStorage", {
   value: {
-    setItem: (key: string, value: any) => {
+    setItem: (key: string, value: string | number) => {
       ls[key] = value.toString()
     },
     getItem: (key: string) => {

@@ -1,9 +1,16 @@
 import React from "react"
 import { Container, H2, HeaderContainer } from "../Layout"
 import { BlockWrapper, Block, Title } from "../BlogItems/BlogItems.styles"
+import { ProjectItem } from '../../types'
 
-export const ProjectItems = ({ dark, projects, preview }: any) => {
-  const handleClick = (path: any) =>
+interface ProjectItemsProps {
+  dark: boolean;
+  preview: boolean;
+  projects: ProjectItem[];
+}
+
+export const ProjectItems = ({ dark, projects, preview }: ProjectItemsProps) => {
+  const handleClick = (path: string) =>
     window.open(path, "_blank", "noopener,noreferrer")
   return (
     <Container dark={dark} id="blog">
@@ -11,7 +18,7 @@ export const ProjectItems = ({ dark, projects, preview }: any) => {
         <H2>Projects</H2>
       </HeaderContainer>
       <BlockWrapper>
-        {projects.map((project: any, i: number) => (
+        {projects.map((project: ProjectItem, i: number) => (
           <Block
             key={i}
             dark={dark}

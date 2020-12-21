@@ -4,6 +4,7 @@ import { Layout, Frame } from "../Layout"
 import { getDarkValue, setDarkValue } from "../../helpers/localStorage"
 import { BlogItems } from "../BlogItems"
 import { SEO } from "../SEO"
+import { Blogs, CopyData, Edge} from "../../types"
 
 export const pageQuery = graphql`
   {
@@ -32,6 +33,7 @@ export const pageQuery = graphql`
         feed
         iwomm
         nodejs
+        full_stack
         react
         javascript
         talk
@@ -44,13 +46,19 @@ export const pageQuery = graphql`
   }
 `
 
-const TagsPage = (props: any) => {
+interface TagsPageProps {
+  path: string;
+  data: {
+    blogs: Blogs;
+    copy: CopyData;
+  }
+}
+
+const TagsPage = ({ data, path}: TagsPageProps) => {
   const [darkMode, setDarkMode] = useState(getDarkValue())
-  const { path, data } = props
-  const {
-    copy: { data: copy },
-    blogs: allBlogs,
-  } = data
+  const { blogs: allBlogs } = data
+  const copy = data.copy.data
+
   const dataObject = {
     nav: {
       blog: copy.blogs,
@@ -64,23 +72,19 @@ const TagsPage = (props: any) => {
     },
   }
 
-  const blogs: any = { edges: [] }
+  const edges: Edge[] = []
   const pathTag = path.replace("/tags/", "")
-  allBlogs.edges.forEach((blog: any) => {
-    if (blog.node.frontmatter.tags.includes(pathTag)) {
-      blogs.edges.push(blog)
+  allBlogs.edges.forEach((edge: Edge) => {
+    if (edge.node.frontmatter.tags.includes(pathTag)) {
+      edges.push(edge)
     }
   })
-
-  const tagTitle = (text: string): string => {
-    return (
-      copy[text.replace(".", "")] ||
-      `${text.charAt(0).toUpperCase()}${text.slice(1)}`
-    )
-  }
-
+  const blogs: Blogs = { edges }
+  const tagTitle = (text: string): string => (copy as any)[text.replace(".", "")] as string ||
+  `${text.charAt(0).toUpperCase()}${text.slice(1)}`
+  
   const tag = tagTitle(pathTag)
-  const toggleDarkMode = () => {
+  const toggleDarkMode = (): void => {
     setDarkValue(!darkMode)
     setDarkMode(!darkMode)
   }
@@ -94,7 +98,6 @@ const TagsPage = (props: any) => {
         toggleDarkMode={toggleDarkMode}
       >
         <BlogItems
-          {...dataObject.blog}
           title={tag}
           dark={darkMode}
           blogs={blogs}

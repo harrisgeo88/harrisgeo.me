@@ -1,6 +1,6 @@
 import React from "react"
 import { navigate } from "gatsby"
-import { Container, H1, H2, Tag, HeaderContainer, Link } from "../Layout"
+import { Container, H2, Tag, HeaderContainer, Link } from "../Layout"
 import {
   Block,
   Title,
@@ -10,9 +10,17 @@ import {
   BlockWrapper,
 } from "./BlogItems.styles"
 import { reformatDate } from "../../helpers/reformatDate"
+import { Blogs, Edge } from '../../types'
 
-export const BlogItems = ({ dark, title, blogs, preview }: any) => {
-  const handleClick = (path: any) => {
+interface BlogItemsProps {
+  dark: boolean;
+  title: string;
+  blogs: Blogs;
+  preview: boolean;
+}
+
+export const BlogItems = ({ dark, title, blogs, preview }: BlogItemsProps) => {
+  const handleClick = (path: string) => {
     navigate(path)
   }
 
@@ -26,7 +34,7 @@ export const BlogItems = ({ dark, title, blogs, preview }: any) => {
           </Link>
         )}
       </HeaderContainer>
-      {blogs.edges.map(({ node }: any, i: number) => {
+      {blogs.edges.map(({ node }: Edge, i: number) => {
         const {
           frontmatter: { path, title, description, date, tags },
         } = node

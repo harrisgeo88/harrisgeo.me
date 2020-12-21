@@ -1,10 +1,7 @@
 import styled from "styled-components"
-import { tokens } from "../tokens"
 import { getBackgroundColor } from "./ProgressBar.utils"
+import { ProgressBarProps } from './ProgressBar.types'
 
-interface ProgressBarProps {
-  progress: number
-}
 
 export const ProgressBarWrapper = styled.div`
   position: sticky;

@@ -2,17 +2,24 @@ type PrismicText = {
   text: string;
 }
 
-type PrismicURL = {
+export type PrismicURL = {
   url: string;
+  alt: string;
 }
 
-type ProjectItem = {
+export type ProjectItem = {
   project_url: PrismicURL;
   project_name: string;
 }
 
 type Tech = {
   framework: string;
+}
+
+export type SocialMedia = {
+  social_text: string;
+  social_name: string;
+  social_link: string;
 }
 
 export type Interest = {
@@ -33,6 +40,7 @@ export type Copy = {
   dev_icon_light: PrismicURL;
   dev_link: PrismicURL;
   feed: string;
+  footer_questions: string;
   github_icon_dark: PrismicURL;
   github_icon_light: PrismicURL;
   github_link: PrismicURL;
@@ -48,6 +56,7 @@ export type Copy = {
   projects: string;
   quote: string;
   site_name: string;
+  social_media: SocialMedia[];
   tech: Tech[];
   twitter_icon_dark: PrismicURL;
   twitter_icon_light: PrismicURL;

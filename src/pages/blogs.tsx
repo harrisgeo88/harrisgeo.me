@@ -4,6 +4,7 @@ import { Layout, Frame } from "../components/Layout"
 import { getDarkValue, setDarkValue } from "../helpers/localStorage"
 import { BlogItems } from "../components/BlogItems"
 import { SEO } from "../components/SEO"
+import { Blogs, CopyData } from "../types"
 
 export const pageQuery = graphql`
   {
@@ -38,12 +39,17 @@ export const pageQuery = graphql`
   }
 `
 
-const BlogsPage = (props: any) => {
+interface IndexProps {
+  data: {
+    blogs: Blogs;
+    copy: CopyData;
+  }
+}
+
+const BlogsPage = ({ data }: IndexProps) => {
   const [darkMode, setDarkMode] = useState(getDarkValue())
-  const {
-    copy: { data: copy },
-    blogs,
-  } = props.data
+  const { blogs } = data
+  const copy = data.copy.data
   const dataObject = {
     nav: {
       blog: copy.blogs,

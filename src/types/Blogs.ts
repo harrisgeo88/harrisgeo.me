@@ -7,9 +7,9 @@ type Frontmatter = {
   title: string;
 }
 
-type Edge = {
+export type Edge = {
   node: {
-    frontMatter:Frontmatter;
+    frontmatter: Frontmatter;
   }
 }
 

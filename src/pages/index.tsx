@@ -6,7 +6,7 @@ import { getDarkValue, setDarkValue } from "../helpers/localStorage"
 import { Layout, Frame } from "../components/Layout"
 import { SEO } from "../components/SEO"
 import { ProjectItems } from "../components/ProjectItems"
-import { Blogs, CopyData } from '../types'
+import { Blogs, CopyData } from "../types"
 
 export const pageQuery = graphql`
   {

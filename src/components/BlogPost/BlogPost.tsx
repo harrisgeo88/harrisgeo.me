@@ -13,6 +13,7 @@ import {
 } from "./BlogPost.styles"
 import { SEO } from "../SEO"
 import { reformatDate } from "../../helpers/reformatDate"
+import { Blog, CopyData, SocialMedia } from "../../types"
 
 export const blogPostQuery = graphql`
   query($path: String) {
@@ -27,7 +28,7 @@ export const blogPostQuery = graphql`
         seoBackground
       }
     }
-    prismic: prismicTitle {
+    copy: prismicTitle {
       data {
         blogs
         projects
@@ -43,35 +44,41 @@ export const blogPostQuery = graphql`
   }
 `
 
-const BlogPost = (props: any) => {
+interface BlogPostProps {
+  data: {
+    blog: Blog;
+    copy: CopyData;
+  }
+}
+
+const BlogPost = ({ data }: BlogPostProps) => {
   const [darkMode, setDarkMode] = useState(getDarkValue())
   const [progress, setProgress] = useState(0)
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
     setDarkValue(!darkMode)
   }
-  const {
-    blog,
-    prismic: { data },
-  } = props.data
+  const { blog } = data
+  const copy = data.copy.data
 
   const navData = {
-    blog: data.blogs,
-    brand: data.site_name,
-    feed: data.feed,
-    home: data.home,
-    projects: data.projects,
+    blog: copy.blogs,
+    brand: copy.site_name,
+    home: copy.home,
+    projects: copy.projects,
+    feed: copy.feed, 
   }
+
   const splitTags = (tags: string[]): string[] =>
     tags.map((t) => t.replace(/ /g, ""))
 
-  const handleClick = (path: any) =>
-    window.open(path, "_blank", "noopener,noreferrer")
+  const handleClick = (path: string) => window.open(path, "_blank", "noopener,noreferrer")
+
   return (
     <Frame
       dark={darkMode}
-      onScroll={(e: any) => {
-        const { scrollTop, scrollHeight, clientHeight } = e.target
+      onScroll={(e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+        const { scrollTop, scrollHeight, clientHeight }: any = e.target
         setProgress((scrollTop * 100) / (scrollHeight - clientHeight))
       }}
     >
@@ -104,9 +111,9 @@ const BlogPost = (props: any) => {
                 </Tag>
               ))}
             </TagWrapper>
-            <P>{data.footer_questions}</P>
-            {data.social_media.map(
-              ({ social_text, social_name, social_link }: any, i: number) => (
+            <P>{copy.footer_questions}</P>
+            {copy.social_media.map(
+              ({ social_text, social_name, social_link }: SocialMedia, i: number) => (
                 <P key={i}>
                   {social_text}&nbsp;
                   <Link dark={darkMode} onClick={() => handleClick(social_link)}>

@@ -13,14 +13,23 @@ import {
 } from "./Layout.styles"
 import { navigate } from "gatsby"
 
+interface LayoutProps {
+  children: any;
+  blog: string;
+  projects: string;
+  feed: string;
+  dark: boolean;
+  toggleDarkMode: () => void
+}
+
 export const Layout = ({
   children,
   blog = "",
   projects = "",
   feed = "",
   dark = false,
-  toggleDarkMode = null,
-}: any) => {
+  toggleDarkMode = () => {},
+}: LayoutProps) => {
   const goto = (url = "") => {
     navigate(url)
   }

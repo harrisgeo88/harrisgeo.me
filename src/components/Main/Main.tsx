@@ -13,21 +13,10 @@ import {
   Greet,
 } from "../Layout"
 import { Interest } from "../../types"
-import { styleInterests } from '../../helpers/styleInterests'
+import { styleInterests } from "../../helpers/styleInterests"
+import { MainProps, IconOption } from "./Main.types"
 
-interface IconOption {
-  url: string
-  lightImg: {
-    alt: string
-    url: string
-  }
-  darkImg: {
-    alt: string
-    url: string
-  }
-}
-
-export const Main = (props: any) => {
+export const Main = (props: MainProps) => {
   const {
     dark,
     greet,
