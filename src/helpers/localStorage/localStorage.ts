@@ -12,7 +12,7 @@ export const getItem = (item = "") => {
 };
 
 export const getDarkValue = () => {
-  return getItem("dark") === "true" ? true : false;
+  return getItem("dark") === "false" ? false : true;
 };
 
 export const setDarkValue = (value: boolean = false) => {
