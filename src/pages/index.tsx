@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { graphql } from "gatsby"
 import { BlogItems } from "../components/BlogItems"
 import { Main } from "../components/Main"
@@ -6,6 +6,7 @@ import { getDarkValue, setDarkValue } from "../helpers/localStorage"
 import { Layout, Frame } from "../components/Layout"
 import { SEO } from "../components/SEO"
 import { ProjectItems } from "../components/ProjectItems"
+import { Blogs, CopyData } from '../types'
 
 export const pageQuery = graphql`
   {
@@ -33,6 +34,11 @@ export const pageQuery = graphql`
         blogs
         projects
         feed
+        greet
+        enjoys
+        interests {
+          interest
+        }
         project_items {
           project_url {
             url
@@ -117,12 +123,21 @@ export const pageQuery = graphql`
   }
 `
 
-const IndexPage = (props: any) => {
-  const [darkMode, setDarkMode] = useState(getDarkValue())
-  const {
-    copy: { data: copy },
-    blogs,
-  } = props.data
+interface IndexProps {
+  data: {
+    blogs: Blogs;
+    copy: CopyData;
+  }
+}
+
+const IndexPage = ({ data }: IndexProps) => {
+  const [darkMode, setDarkMode] = useState(true)
+  const { blogs } = data
+  const copy = data.copy.data
+
+  useEffect(() => {
+    setDarkMode(getDarkValue())
+  },[])
   
   const dataObject = {
     nav: {
@@ -137,6 +152,9 @@ const IndexPage = (props: any) => {
       bio: copy.quote,
       tech: copy.tech,
       likes: copy.likes,
+      greet: copy.greet,
+      enjoys: copy.enjoys,
+      interests: copy.interests,
       profilePhoto: copy.image.url,
       currentJob: copy.current_job[0].text,
       currentJobLink: copy.current_job_link.url,
@@ -174,7 +192,6 @@ const IndexPage = (props: any) => {
         toggleDarkMode={toggleDarkMode}
       >
         <Main {...dataObject.main} dark={darkMode} />
-
         <BlogItems
           {...dataObject.blog}
           dark={darkMode}

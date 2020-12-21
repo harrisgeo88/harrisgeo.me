@@ -1,0 +1,1 @@
+export { styleInterests } from './styleInterests'

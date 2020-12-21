@@ -25,6 +25,12 @@ export const Frame = styled.div<Dark>`
   }
 `
 
+export const Greet = styled.div`
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: ${tokens.spacing};
+`
+
 export const Body = styled.div<Dark>`
   position: absolute;
   font-family: ${tokens.font};
@@ -102,6 +108,11 @@ export const Bio = styled.div`
     margin: 0;
   }
 `
+
+export const TypedContainer = styled.div`
+  display: flex;
+`
+export const TypedContent = styled.div``
 
 export const IconsContainer = styled.div`
   margin-top: ${tokens.spacing};
