@@ -2,6 +2,7 @@ import { H1 as H1Layout, Tag as TagLayout } from "../Layout"
 import { tokens } from "../tokens"
 import styled from "styled-components"
 import MerriweatherFontFace from "../../assets/fonts/merriweather"
+import "prism-theme-night-owl";
 
 const font = "Merriweather"
 
@@ -16,16 +17,8 @@ export const PostContainer = styled.div<{ dark: boolean }>`
     margin: 40px 0;
   }
 
-  > p > code,
-  ol > li > code {
-    background: none;
-  }
-
   > div > pre {
-    margin: ${tokens.spacing};
     padding: ${tokens.spacing};
-    color: red;
-    background-color: ${tokens.dark};
     white-space: pre;
     text-shadow: 0 1px 0 ${tokens.black};
     font: 16px/24px "Courier New", Courier, "Lucida Sans Typewriter",

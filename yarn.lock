@@ -13886,6 +13886,11 @@ pretty-format@^26.0.1:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
+prism-theme-night-owl@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/prism-theme-night-owl/-/prism-theme-night-owl-1.4.0.tgz#af8a215ba75c081e22e74be41661dc40d7ad0c34"
+  integrity sha512-1N1GVbVorGd5t1Vw76yL/3rhqdiCpDrJg26Is+jGeMV7qiIMZL+bC7Mjx7HMMuVKZoi+2nWSbU5IutBYNy9tiQ==
+
 prismic-dom@^2.1.0:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/prismic-dom/-/prismic-dom-2.2.3.tgz#803925eebe58a4dd147529f50b71c0853eb3d744"
