@@ -131,7 +131,7 @@ export const IconsContainer = styled.div`
   }
 `
 
-export const Link = styled.a.attrs({ as: "button" })<Dark>`
+export const A = styled.a<Dark>`
   ${buttonResetStyles};
   color: ${(props) => (props.dark ? tokens.light : tokens.dark)};
   font-weight: 300;
@@ -141,8 +141,11 @@ export const Link = styled.a.attrs({ as: "button" })<Dark>`
 
   &:hover {
     text-decoration: underline;
+    color: ${tokens.hover};
   }
 `
+
+export const Link = styled(A).attrs({ as: "button" })<Dark>``
 
 export const Icon = styled.img<StyledSystemProps>`
   ${layout}
@@ -179,12 +182,6 @@ export const HeaderContainer = styled.div<{ preview: boolean }>`
   padding: 0 ${tokens.spacingXs};
 `
 
-export const H2 = styled.h2`
-  font-size: 30px;
-  font-weight: 400;
-  padding-bottom: 0;
-`
-
 export const H1 = styled.h1`
   width: 100%;
   font-weight: 500;
@@ -194,6 +191,18 @@ export const H1 = styled.h1`
   @media screen and (max-width: ${tokens.mobile}) {
     font-size: 30px;
   }
+`
+
+export const H2 = styled.h2`
+  font-size: 30px;
+  font-weight: 400;
+  padding-bottom: 0;
+`
+
+export const H3 = styled.h3`
+  font-size: 19px;
+  font-weight: 400;
+  padding-bottom: 0;
 `
 
 export const Row = styled.div`

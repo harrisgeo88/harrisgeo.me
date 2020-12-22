@@ -31,6 +31,7 @@ export const pageQuery = graphql`
         blogs
         projects
         feed
+        newsletter
         blog_title {
           text
         }
@@ -55,6 +56,7 @@ const BlogsPage = ({ data }: IndexProps) => {
       blog: copy.blogs,
       projects: copy.projects,
       feed: copy.feed,
+      newsletter: copy.newsletter,
       brand: copy.site_name,
       home: copy.home,
     },

@@ -1,3 +1,5 @@
+import { NewsletterCopy } from "../components/SignupForm"
+
 type PrismicText = {
   text: string;
 }
@@ -26,11 +28,12 @@ export type Interest = {
   interest: string;
 }
 
-export type Copy = {
+export type Copy = Partial<NewsletterCopy> & {
   bio: PrismicText[];
   blog_title: PrismicText[];
   blogs: string;
   greet: string;
+  newsletter: string;
   enjoys: string;
   interests: Interest[];
   current_job: PrismicText[];
@@ -52,6 +55,10 @@ export type Copy = {
   li_icon_light: PrismicURL;
   li_link: PrismicURL;
   likes: string;
+  newsletter_title: string,
+  newsletter_quote: string,
+  newsletter_input_placeholder: string,
+  subscribe: string,
   project_items: ProjectItem[];
   projects: string;
   quote: string;

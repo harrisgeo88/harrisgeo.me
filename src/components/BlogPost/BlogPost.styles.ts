@@ -40,6 +40,7 @@ export const PostContainer = styled.div<{ dark: boolean }>`
   > p > a {
     color: ${(props) => (props.dark ? tokens.white : tokens.dark)};
     font-weight: 600;
+    text-decoration: none;
     :hover {
       color: ${tokens.hover};
     }

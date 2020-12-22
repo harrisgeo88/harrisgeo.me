@@ -34,6 +34,7 @@ export const pageQuery = graphql`
         blogs
         projects
         feed
+        newsletter
         greet
         enjoys
         interests {
@@ -146,6 +147,7 @@ const IndexPage = ({ data }: IndexProps) => {
       home: copy.home,
       projects: copy.projects,
       feed: copy.feed,
+      newsletter: copy.newsletter,
     },
     main: {
       title: copy.home_title[0].text,

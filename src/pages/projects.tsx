@@ -15,6 +15,7 @@ export const pageQuery = graphql`
         blogs
         projects
         feed
+        newsletter
         project_items {
           project_url {
             url
@@ -41,6 +42,7 @@ const BlogsPage = ({ data }: ProjectProps) => {
       brand: copy.site_name,
       home: copy.home,
       projects: copy.projects,
+      newsletter: copy.newsletter,
       feed: copy.feed,
     },
     projects: copy.project_items,

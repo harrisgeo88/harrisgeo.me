@@ -18,6 +18,7 @@ interface LayoutProps {
   blog: string;
   projects: string;
   feed: string;
+  newsletter: string;
   dark: boolean;
   toggleDarkMode: () => void
 }
@@ -27,11 +28,16 @@ export const Layout = ({
   blog = "",
   projects = "",
   feed = "",
+  newsletter = "",
   dark = false,
   toggleDarkMode = () => {},
 }: LayoutProps) => {
-  const goto = (url = "") => {
-    navigate(url)
+  const goto = (url = "", newPage?: boolean) => {
+    if (newPage) {
+      window.open(url, "_blank", "noopener,noreferrer")
+    } else {
+      navigate(url)
+    }
   }
 
   return (
@@ -49,6 +55,7 @@ export const Layout = ({
             <NavItem onClick={() => goto("/projects")}>{projects}</NavItem>
           </LeftContainer>
           <RightContainer>
+            <NavItem onClick={() => goto("https://tinyletter.com/harrisgeo88", true)}>{newsletter}</NavItem>
             <NavItem onClick={() => goto("/feed.xml")}>{feed}</NavItem>
           </RightContainer>
         </BottomRow>

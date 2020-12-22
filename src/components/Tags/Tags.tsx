@@ -4,7 +4,7 @@ import { Layout, Frame } from "../Layout"
 import { getDarkValue, setDarkValue } from "../../helpers/localStorage"
 import { BlogItems } from "../BlogItems"
 import { SEO } from "../SEO"
-import { Blogs, CopyData, Edge} from "../../types"
+import { Blogs, CopyData, Edge } from "../../types"
 
 export const pageQuery = graphql`
   {
@@ -31,6 +31,7 @@ export const pageQuery = graphql`
         blogs
         projects
         feed
+        newsletter
         iwomm
         nodejs
         full_stack
@@ -66,6 +67,7 @@ const TagsPage = ({ data, path}: TagsPageProps) => {
       home: copy.home,
       projects: copy.projects,
       feed: copy.feed,
+      newsletter: copy.newsletter,
     },
     blog: {
       title: copy.blog_title[0].text,

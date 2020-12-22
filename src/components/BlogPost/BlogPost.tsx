@@ -14,6 +14,7 @@ import {
 import { SEO } from "../SEO"
 import { reformatDate } from "../../helpers/reformatDate"
 import { Blog, CopyData, SocialMedia } from "../../types"
+import { SignupForm, NewsletterCopy } from '../SignupForm'
 
 export const blogPostQuery = graphql`
   query($path: String) {
@@ -33,6 +34,11 @@ export const blogPostQuery = graphql`
         blogs
         projects
         feed
+        newsletter
+        newsletter_title
+        newsletter_quote
+        newsletter_input_placeholder
+        subscribe
         footer_questions
         social_media {
           social_text
@@ -67,6 +73,14 @@ const BlogPost = ({ data }: BlogPostProps) => {
     home: copy.home,
     projects: copy.projects,
     feed: copy.feed, 
+    newsletter: copy.newsletter, 
+  }
+
+  const subscribeData: NewsletterCopy = {
+    title: copy.newsletter_title,
+    quote: copy.newsletter_quote,
+    placeholder: copy.newsletter_input_placeholder,
+    subscribe: copy.subscribe,
   }
 
   const splitTags = (tags: string[]): string[] =>
@@ -95,6 +109,7 @@ const BlogPost = ({ data }: BlogPostProps) => {
             dark={darkMode}
             dangerouslySetInnerHTML={{ __html: blog.html }}
           />
+          <SignupForm dark={darkMode} copy={subscribeData} />
           <Footer>
             <P>
               Date posted:&nbsp;<b>{reformatDate(blog.frontmatter.date)}</b>
