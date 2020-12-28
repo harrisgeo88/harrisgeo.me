@@ -35,6 +35,7 @@ export const pageQuery = graphql`
         iwomm
         nodejs
         full_stack
+        github_actions
         react
         javascript
         talk
