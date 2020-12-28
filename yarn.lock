@@ -5073,7 +5073,7 @@ coa@^2.0.2:
     chalk "^2.4.1"
     q "^1.1.2"
 
-code-gen-library@^1.0.6:
+code-gen-library@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/code-gen-library/-/code-gen-library-1.0.8.tgz#44f4d9a01cd18423019388aea15f42b0cabaaa86"
   integrity sha512-86Gsrlh6b1qmOMTUmd/AWmvOGMftYY38dxTIv3cV6Glww26Qx29GdaWOyWDyItDnhrF919oAnrWUnTvJOC5wbg==

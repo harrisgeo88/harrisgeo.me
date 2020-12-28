@@ -49,12 +49,12 @@ const dateToday = () => {
 
   let yyyy = today.getFullYear()
   if (dd < 10) {
-    dd = "0" + dd
+    dd = `0${dd}`
   }
   if (mm < 10) {
-    mm = "0" + mm
+    mm = `0${mm}`
   }
-  const date = dd + "-" + mm + "-" + yyyy
+  const date = `${yyyy}-${mm}-${dd}`
 
   return date
 }

@@ -186,7 +186,7 @@ const IndexPage = ({ data }: IndexProps) => {
   }
 
   return (
-    <Frame dark={darkMode}>
+    <Frame dark={darkMode} id="frame">
       <SEO title="Home" />
       <Layout
         {...dataObject.nav}

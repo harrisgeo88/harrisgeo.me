@@ -82,7 +82,7 @@ export const Main = (props: MainProps) => {
           <TypedContainer>
             <TypedContent ref={typedRef} />
           </TypedContainer>
-          <IconsContainer>
+          <IconsContainer id="social">
             {iconOptions.map(
               ({ url, lightImg, darkImg }: IconOption, i: number) => (
                 <Link key={i} onClick={() => openURL(url)} dark={dark}>

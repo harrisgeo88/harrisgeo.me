@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gatsby build",
     "generate": "generate",
-    "dev": "rm -rf .cache && yarn develop",
+    "dev": "rm -rf .cache && npm run develop",
     "develop": "gatsby develop",
     "new": "plop --require esm",
     "start": "npm run develop",

@@ -27,7 +27,7 @@ export const BlogItems = ({ dark, title, blogs, preview }: BlogItemsProps) => {
   return (
     <Container dark={dark} id="blog">
       <HeaderContainer preview={preview}>
-        <H2>{preview && "Latest "} {title} </H2>
+        <H2>{preview && "Latest"} {title}</H2>
         {preview && (
           <Link dark={dark} onClick={() => navigate("/blogs")}>
             View all posts
@@ -40,7 +40,7 @@ export const BlogItems = ({ dark, title, blogs, preview }: BlogItemsProps) => {
         } = node
 
         return (
-          <BlockWrapper key={i}>
+          <BlockWrapper key={i} className="blog-posts">
             <Block onClick={() => handleClick(path)} dark={dark}>
               <Title>{title}</Title>
               <Description>{description}</Description>
