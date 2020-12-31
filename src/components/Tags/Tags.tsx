@@ -36,6 +36,7 @@ export const pageQuery = graphql`
         nodejs
         full_stack
         github_actions
+        year_review
         react
         javascript
         talk
