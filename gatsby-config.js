@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `Harris Geo`,
     titleTemplate: "%s Personal Blog",
-    description: "Sharing some cool stuff I have learned about web development",
+    description: "Software engineer blogging about full stack and career topics",
     siteUrl: "https://www.harrisgeo.me",
     image:
       "https://images.prismic.io/harrisgeo%2Fd8abaa2d-b275-4896-a887-bd3263774172_me-snow.jpg?auto=compress,format",
