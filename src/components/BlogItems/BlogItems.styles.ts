@@ -47,6 +47,7 @@ export const Title = styled.div`
   text-decoration: none;
   font-size: 24px;
   font-weight: 400;
+  color: var(--titleColor);
 
   &:hover {
     color: ${tokens.hover};
@@ -60,7 +61,6 @@ export const Title = styled.div`
 export const Description = styled.div`
   font-size: 20px;
   font-weight: 400;
-  opacity: 0.7;
   margin-top: ${tokens.spacingS};
 
   @media screen and (max-width: ${tokens.mobile}) {
@@ -71,5 +71,4 @@ export const Description = styled.div`
 export const Date = styled.div`
   font-size: 16px;
   font-style: italic;
-  color: #777;
 `

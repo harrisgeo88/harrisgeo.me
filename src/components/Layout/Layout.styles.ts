@@ -19,6 +19,9 @@ export const Frame = styled.div<Dark>`
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
 
+  --titleColor: ${props => (props.dark ? tokens.white : tokens.dark)};
+  --bodyColor: ${props => (props.dark ? tokens.grey : tokens.dark)};
+
   * {
     ${selection}
     ${outline}
@@ -29,6 +32,7 @@ export const Greet = styled.div`
   font-size: 36px;
   font-weight: 800;
   margin-bottom: ${tokens.spacing};
+  color: var(--titleColor);
 `
 
 export const Body = styled.div<Dark>`
@@ -36,7 +40,7 @@ export const Body = styled.div<Dark>`
   font-family: ${tokens.font};
   width: 100%;
   height: 100%;
-  color: ${(props) => (props.dark ? tokens.white : tokens.dark)};
+  color: ${(props) => (props.dark ? tokens.light : tokens.dark)};
   -webkit-font-smoothing: antialiased;
 `
 
@@ -49,6 +53,7 @@ export const Navbar = styled.header<Dark>`
 
   @media screen and (max-width: ${tokens.mobile}) {
     margin: 0;
+    padding: 0 15px;
   }
 
   @media screen and (min-width: ${tokens.mobile}) and (max-width: ${tokens.tablet}) {
@@ -67,6 +72,7 @@ export const Container = styled.section<Dark>`
   @media screen and (max-width: ${tokens.mobile}) {
     margin: 0;
     margin-top: 40px;
+    padding: 15px;
   }
 
   @media screen and (max-width: ${tokens.mobileXs}) {
@@ -114,6 +120,9 @@ export const TypedContainer = styled.div`
 `
 export const TypedContent = styled.div`
   padding: 0 ${tokens.spacing2Xs};
+  > b {
+    color: var(--titleColor);
+  }
 `
 
 export const IconsContainer = styled.div`
@@ -187,6 +196,7 @@ export const H1 = styled.h1`
   font-weight: 500;
   font-size: 48px;
   margin-bottom: ${tokens.spacingXl};
+  color: var(--titleColor);
 
   @media screen and (max-width: ${tokens.mobile}) {
     font-size: 30px;
@@ -197,12 +207,14 @@ export const H2 = styled.h2`
   font-size: 30px;
   font-weight: 400;
   padding-bottom: 0;
+  color: var(--titleColor);
 `
 
 export const H3 = styled.h3`
   font-size: 19px;
   font-weight: 400;
   padding-bottom: 0;
+  color: var(--titleColor);
 `
 
 export const Row = styled.div`

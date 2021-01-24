@@ -30,7 +30,7 @@ export const BlogItems = ({ dark, title, blogs, preview }: BlogItemsProps) => {
         <H2>{preview && "Latest"} {title}</H2>
         {preview && (
           <Link dark={dark} onClick={() => navigate("/blogs")}>
-            View all posts
+            View all
           </Link>
         )}
       </HeaderContainer>

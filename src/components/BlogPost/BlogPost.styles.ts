@@ -11,8 +11,11 @@ export const PostContainer = styled.div<{ dark: boolean }>`
 
   margin: 50px 0;
   font-family: ${font};
-  line-height: 2;
+  line-height: 1.6;
 
+  > h1, h2, h3 {
+    color: var(--titleColor)
+  }
   > h3 {
     margin: 40px 0;
   }
@@ -37,6 +40,16 @@ export const PostContainer = styled.div<{ dark: boolean }>`
     :hover {
       color: ${tokens.hover};
     }
+  }
+
+  > blockquote {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  > blockquote > p {
+    border-left: 3px solid ${tokens.hover};
+    padding-left: 15px;
   }
 
   img {
