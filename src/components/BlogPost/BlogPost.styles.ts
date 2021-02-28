@@ -13,9 +13,14 @@ export const PostContainer = styled.div<{ dark: boolean }>`
   font-family: ${font};
   line-height: 1.6;
 
-  > h1, h2, h3 {
+  > h1, h2, h3, h1>a, h2>a, h3>a {
     color: var(--titleColor)
   }
+
+  > h1>a:hover, h2>a:hover, h3>a:hover {
+    color: ${tokens.hover};
+  }
+
   > h3 {
     margin: 40px 0;
   }
