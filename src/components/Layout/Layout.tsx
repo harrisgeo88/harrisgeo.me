@@ -28,7 +28,6 @@ export const Layout = ({
   blog = "",
   projects = "",
   feed = "",
-  newsletter = "",
   dark = false,
   toggleDarkMode = () => {},
 }: LayoutProps) => {
@@ -55,7 +54,6 @@ export const Layout = ({
             <NavItem onClick={() => goto("/projects")}>{projects}</NavItem>
           </LeftContainer>
           <RightContainer>
-            <NavItem onClick={() => goto("https://tinyletter.com/harrisgeo88", true)}>{newsletter}</NavItem>
             <NavItem onClick={() => goto("/feed.xml")}>{feed}</NavItem>
           </RightContainer>
         </BottomRow>

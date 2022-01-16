@@ -38,9 +38,9 @@ export const Main = (props: MainProps) => {
   const typedRef = useRef(null)
 
   useEffect(() => {
-    var options = {
+    const options = {
       strings: interests.map(({interest}:Interest) => `${styleInterests(interest)}!`),
-      typeSpeed: 10,
+      typeSpeed: 25,
       loop: true,
     };
     new Typed(typedRef.current, options);

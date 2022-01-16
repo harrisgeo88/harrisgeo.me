@@ -18,6 +18,7 @@
     "format": "prettier --parser typescript --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.ts*\""
   },
   "dependencies": {
+    "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.10.7",
     "code-gen-library": "^1.0.6",
     "gatsby": "^2.22.15",
