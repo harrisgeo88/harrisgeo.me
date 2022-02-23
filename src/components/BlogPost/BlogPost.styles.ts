@@ -2,7 +2,7 @@ import { H1 as H1Layout, Tag as TagLayout } from "../Layout"
 import { tokens } from "../tokens"
 import styled from "styled-components"
 import MerriweatherFontFace from "../../assets/fonts/merriweather"
-import "prism-theme-night-owl";
+import "prism-theme-night-owl"
 
 const font = "Merriweather"
 
@@ -13,11 +13,18 @@ export const PostContainer = styled.div<{ dark: boolean }>`
   font-family: ${font};
   line-height: 1.6;
 
-  > h1, h2, h3, h1>a, h2>a, h3>a {
-    color: var(--titleColor)
+  > h1,
+  h2,
+  h3,
+  h1 > a,
+  h2 > a,
+  h3 > a {
+    color: var(--titleColor);
   }
 
-  > h1>a:hover, h2>a:hover, h3>a:hover {
+  > h1 > a:hover,
+  h2 > a:hover,
+  h3 > a:hover {
     color: ${tokens.hover};
   }
 
@@ -59,6 +66,19 @@ export const PostContainer = styled.div<{ dark: boolean }>`
 
   img {
     max-width: 800px;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  tr,
+  th,
+  td {
+    border: 1px solid;
+    padding: 15px;
+    font-weight: 5;
+    text-align: left;
   }
 
   @media screen and (max-width: ${tokens.mobile}) {
